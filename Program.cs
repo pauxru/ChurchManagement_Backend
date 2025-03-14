@@ -19,7 +19,7 @@ namespace Churchmanagement
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection")));
 
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IChurchService, ChurchService>();
@@ -33,7 +33,7 @@ namespace Churchmanagement
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.AllowAnyOrigin()
+                    policy.WithOrigins("http://localhost:3000") // Replace with your frontend URL
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
@@ -47,7 +47,7 @@ namespace Churchmanagement
             })
             .AddJwtBearer(options =>
             {
-                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}"; // Auth0 domain 
+                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}"; // Auth0 domain
                 options.Audience = builder.Configuration["Auth0:Audience"]; // API Identifier
                 options.Events = new JwtBearerEvents
                 {
@@ -80,7 +80,7 @@ namespace Churchmanagement
                 app.UseSwaggerUI();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseCors("AllowFrontend");
 
             app.UseAuthentication();
