@@ -80,7 +80,7 @@ namespace Churchmanagement
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors("AllowFrontend");
 
             app.UseAuthentication();
