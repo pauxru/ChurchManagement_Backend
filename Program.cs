@@ -19,7 +19,7 @@ namespace Churchmanagement
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IChurchService, ChurchService>();
@@ -47,7 +47,7 @@ namespace Churchmanagement
             })
             .AddJwtBearer(options =>
             {
-                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}"; // Auth0 domain
+                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}"; // Auth0 domain 
                 options.Audience = builder.Configuration["Auth0:Audience"]; // API Identifier
                 options.Events = new JwtBearerEvents
                 {
