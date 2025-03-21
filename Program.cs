@@ -28,6 +28,7 @@ namespace Churchmanagement
             builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<ITwilioCommunication, TwilioCommunication>();
             builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
 
             builder.Services.AddCors(options =>
             {

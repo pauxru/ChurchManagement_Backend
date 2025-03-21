@@ -21,7 +21,7 @@ namespace Churchmanagement.Controllers
             _clergyServices = clergyServices;
         }
 
-        [HttpGet("/{clergyID}")]
+        [HttpGet("get-clergy/{clergyID}")]
         public IActionResult getClergyByID(int clergyID)
         {
             Console.WriteLine("Fetching getClergyByID");

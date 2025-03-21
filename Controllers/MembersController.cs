@@ -29,36 +29,6 @@ namespace Churchmanagement.Controllers
             public string Email { get; set; }
         }
 
-        [HttpPost("Profile-Create")]
-        public IActionResult CreateNewMemberProfileRecord([FromBody] CreateMemberDto newMember)
-        {
-            Console.WriteLine("Here at CreateNewMemberProfileRecord");
-
-            if (newMember == null || string.IsNullOrWhiteSpace(newMember.Name) || string.IsNullOrWhiteSpace(newMember.Email) || string.IsNullOrWhiteSpace(newMember.UserId))
-            {
-                return BadRequest(new { message = "Name and Email are required." });
-            }
-
-            var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-            if (!emailRegex.IsMatch(newMember.Email))
-            {
-                return BadRequest(new { message = "The email is invalid." });
-            }
-
-            try
-            {
-                // Call service to create a new member profile
-                string userId = _memberservices.CreateNewMemberProfileRecord(newMember.UserId, newMember.Name, newMember.Email);
-
-                return Ok(new { message = "Member profile created successfully", userID = userId });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "An error occurred while creating the member profile", error = ex.Message });
-            }
-        }
-
-
         [HttpGet("local-church/{localChurchId}")]
         public IActionResult GetMembersByLocalChurch(int localChurchId)
         {

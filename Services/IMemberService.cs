@@ -13,7 +13,7 @@ namespace Churchmanagement.Services
 
         List<ChurchMember> GetArchDioceseMembers(int archDioceseID);
 
-        string CreateNewMemberProfileRecord(string userId, string name, string email);
+        
 
     }
 }
