@@ -19,7 +19,7 @@ namespace Churchmanagement
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection")));
 
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IChurchService, ChurchService>();
@@ -33,7 +33,7 @@ namespace Churchmanagement
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000", "https://localhost:3000")
+                    policy.WithOrigins("http://localhost:3000", "https://localhost:3000", "https://www.pawadtech.com")
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
