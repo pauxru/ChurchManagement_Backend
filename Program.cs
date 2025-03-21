@@ -33,7 +33,7 @@ namespace Churchmanagement
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000", "https://localhost:3000", "https://www.pawadtech.com")
+                    policy.WithOrigins("https://www.pawadtech.com")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();
