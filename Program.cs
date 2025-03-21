@@ -35,7 +35,8 @@ namespace Churchmanagement
                 {
                     policy.WithOrigins("http://localhost:3000", "https://localhost:3000", "https://www.pawadtech.com")
                           .AllowAnyHeader()
-                          .AllowAnyMethod();
+                          .AllowAnyMethod()
+                          .AllowCredentials();
                 });
             });
 
